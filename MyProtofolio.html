@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rasha Zreaq - UX/UI Designer</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path d='M60 70 Q60 60, 70 60 L120 60 Q135 60, 135 75 Q135 90, 120 90 L90 90 L135 130 M90 90 L90 130' fill='none' stroke='%236366f1' stroke-width='4'/></svg>" type="image/svg+xml">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .logo-svg {
+            width: 45px;
+            height: 45px;
+            fill: #6366f1;
+            transition: fill 0.3s ease;
+        }
+
+        .logo:hover .logo-svg {
+            fill: #4f46e5;
+        }
+
+        .logo-text {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #6366f1;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            fill: rgba(255, 255, 255, 0.9);
+            margin: 0 auto 2rem auto;
+            display: block;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #6366f1;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #6366f1, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-logo {
+            width: 180px;
+            height: 180px;
+            fill: rgba(255, 255, 255, 0.9);
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            background: #f3f4f6;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #6366f1;
+            font-weight: 500;
+        }
+
+        /* Case Studies Section */
+        .case-studies {
+            background: #f8fafc;
+        }
+
+        .case-study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .case-study-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .case-study-image {
+            height: 250px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .case-study-content {
+            padding: 2rem;
+        }
+
+        .case-study-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .case-study-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-study-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: #e0e7ff;
+            color: #6366f1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .view-case-study {
+            display: inline-block;
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .view-case-study:hover {
+            color: #4f46e5;
+        }
+
+        /* Case Study Detail Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            position: relative;
+            background: white;
+            width: 90%;
+            max-width: 600px;
+            margin: 4rem auto;
+            border-radius: 15px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background-color: #f3f4f6;
+        }
+
+        .modal h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .modal-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .modal-link {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #6366f1;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            min-width: 200px;
+        }
+
+        .modal-link:hover {
+            background: #4f46e5;
+        }
+
+        .modal-link.secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .modal-link.secondary:hover {
+            background: #d1d5db;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+        }
+
+        .contact .section-title {
+            color: white;
+        }
+
+        .contact-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .contact-link:hover {
+            color: #6366f1;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Footer Logo */
+        .footer-logo {
+            width: 60px;
+            height: 60px;
+            fill: rgba(255, 255, 255, 0.7);
+            margin: 0 auto 2rem auto;
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo-svg {
+                width: 35px;
+                height: 35px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-logo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .about-image-logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .case-study-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .modal-content {
+                padding: 2rem;
+                margin: 1rem;
+                width: calc(100% - 2rem);
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Logo animation */
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-logo {
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .loading {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#home" class="logo">
+                    <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Decorative outer circle -->
+                        <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                        
+                        <!-- Main calligraphic 'R' -->
+                        <path d="M60 70 Q60 60, 70 60 L120 60 Q135 60, 135 75 Q135 90, 120 90 L90 90 L135 130 M90 90 L90 130" 
+                              fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        
+                        <!-- Decorative flourish under R -->
+                        <path d="M70 140 Q90 145, 110 140 Q130 135, 120 142" 
+                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                        
+                        <!-- Small decorative dots -->
+                        <circle cx="150" cy="75" r="2" fill="currentColor" opacity="0.6"/>
+                        <circle cx="45" cy="120" r="2" fill="currentColor" opacity="0.6"/>
+                        <circle cx="155" cy="140" r="1.5" fill="currentColor" opacity="0.4"/>
+                    </svg>
+                    <span class="logo-text">Rasha Zreaq</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <svg class="hero-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Decorative outer circle -->
+                    <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                    
+                    <!-- Main calligraphic 'R' -->
+                    <path d="M60 70 Q60 60, 70 60 L120 60 Q135 60, 135 75 Q135 90, 120 90 L90 90 L135 130 M90 90 L90 130" 
+                          fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    
+                    <!-- Decorative flourish under R -->
+                    <path d="M70 140 Q90 145, 110 140 Q130 135, 120 142" 
+                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                    
+                    <!-- Small decorative dots -->
+                    <circle cx="150" cy="75" r="2" fill="currentColor" opacity="0.6"/>
+                    <circle cx="45" cy="120" r="2" fill="currentColor" opacity="0.6"/>
+                    <circle cx="155" cy="140" r="1.5" fill="currentColor" opacity="0.4"/>
+                </svg>
+                <h1>UX/UI Designer & Computer Science Student</h1>
+                <p>Building user-centered digital experiences through research, empathy, and strategic design thinking</p>
+                <a href="#work" class="cta-button">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <svg class="about-image-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Decorative outer circle -->
+                        <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                        
+                        <!-- Main calligraphic 'R' -->
+                        <path d="M60 70 Q60 60, 70 60 L120 60 Q135 60, 135 75 Q135 90, 120 90 L90 90 L135 130 M90 90 L90 130" 
+                              fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        
+                        <!-- Decorative flourish under R -->
+                        <path d="M70 140 Q90 145, 110 140 Q130 135, 120 142" 
+                              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                        
+                        <!-- Small decorative dots -->
+                        <circle cx="150" cy="75" r="2" fill="currentColor" opacity="0.6"/>
+                        <circle cx="45" cy="120" r="2" fill="currentColor" opacity="0.6"/>
+                        <circle cx="155" cy="140" r="1.5" fill="currentColor" opacity="0.4"/>
+                    </svg>
+                </div>
+                <div class="about-text">
+                    <h3>Hi, I'm Rasha Zreaq 👩🏻‍💻</h3>
+                    <p>I'm a UX/UI designer and computer science student passionate about building user-centered digital experiences. My background in research and visual design allows me to create products that are not only beautiful but also functional and intuitive.</p>
+                    <p>I believe design starts with empathy and ends with clarity. My approach combines technical knowledge with creative problem-solving to deliver solutions that truly serve users' needs.</p>
+                    <div class="skills">
+                        <span class="skill-tag">User Research</span>
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Miro</span>
+                        <span class="skill-tag">Prototyping</span>
+                        <span class="skill-tag">Usability Testing</span>
+                        <span class="skill-tag">Visual Design</span>
+                        <span class="skill-tag">Product Thinking</span>
+                    </div>
+                    <p style="margin-top: 1.5rem; color: #666; font-size: 0.95rem;">
+                        <strong>Interests:</strong> Coffee ☕, sketching, usability research, product strategy
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section id="work" class="case-studies">
+        <div class="container">
+            <h2 class="section-title">Featured Work</h2>
+            <div class="case-study-grid">
+                <!-- Case Study 1 - Coffee Shop App -->
+                <div class="case-study-card">
+                    <div class="case-study-image">☕ Coffee Shop App</div>
+                    <div class="case-study-content">
+                        <h3>Coffee Shop App - Mobile Ordering Experience</h3>
+                        <p>A mobile experience designed for coffee lovers who want a fast, intuitive way to customize and reorder drinks. Focused on simplifying the ordering process while maintaining visual engagement.</p>
+                        <div class="case-study-tags">
+                            <span class="tag">Mobile Design</span>
+                            <span class="tag">User Research</span>
+                            <span class="tag">Prototyping</span>
+                            <span class="tag">Usability Testing</span>
+                        </div>
+                        <p style="margin: 1rem 0; font-size: 0.9rem; color: #888;">
+                            <strong>Duration:</strong> February – June 2025 | <strong>Role:</strong> UX/UI Designer & Researcher
+                        </p>
+                        <a class="view-case-study" onclick="openModal('modal1')">View Case Study →</a>
+                    </div>
+                </div>
+
+                <!-- Case Study 2 - Coming Soon -->
+                <div class="case-study-card">
+                    <div class="case-study-image">📱 Project 2</div>
+                    <div class="case-study-content">
+                        <h3>Coming Soon</h3>
+                        <p>New project currently in development. Stay tuned for updates on this exciting user experience challenge.</p>
+                        <div class="case-study-tags">
+                            <span class="tag">In Progress</span>
+                        </div>
+                        <p style="color: #999; font-style: italic;">Case study coming soon...</p>
+                    </div>
+                </div>
+
+                <!-- Case Study 3 - Coming Soon -->
+                <div class="case-study-card">
+                    <div class="case-study-image">🎨 Project 3</div>
+                    <div class="case-study-content">
+                        <h3>Coming Soon</h3>
+                        <p>Another exciting project in the pipeline. Each project is an opportunity to learn and grow as a designer.</p>
+                        <div class="case-study-tags">
+                            <span class="tag">In Progress</span>
+                        </div>
+                        <p style="color: #999; font-style: italic;">Case study coming soon...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <svg class="footer-logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Decorative outer circle -->
+                <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                
+                <!-- Main calligraphic 'R' -->
+                <path d="M60 70 Q60 60, 70 60 L120 60 Q135 60, 135 75 Q135 90, 120 90 L90 90 L135 130 M90 90 L90 130" 
+                      fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                
+                <!-- Decorative flourish under R -->
+                <path d="M70 140 Q90 145, 110 140 Q130 135, 120 142" 
+                      fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                
+                <!-- Small decorative dots -->
+                <circle cx="150" cy="75" r="2" fill="currentColor" opacity="0.6"/>
+                <circle cx="45" cy="120" r="2" fill="currentColor" opacity="0.6"/>
+                <circle cx="155" cy="140" r="1.5" fill="currentColor" opacity="0.4"/>
+            </svg>
+            <h2 class="section-title">Let's Work Together</h2>
+            <div class="contact-content">
+                <p>I'm always interested in new opportunities and collaborations. Let's discuss how we can create something amazing together.</p>
+                <div class="contact-links">
+                    <a href="mailto:rasha.2005zreaq@gmail.com" class="contact-link">
+                        📧 rasha.2005zreaq@gmail.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/rasha-zreaq" class="contact-link" target="_blank" rel="noopener noreferrer">
+                        💼 LinkedIn
+                    </a>
+                    <a href="https://www.behance.net/rashazreaq" class="contact-link" target="_blank" rel="noopener noreferrer">
+                        🎨 Behance
+                    </a>
+                    <a href="tel:+970567157098" class="contact-link">
+                        📱 +970 567 15 7098
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simplified Case Study Modal -->
+    <div id="modal1" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal1')" aria-label="Close modal">&times;</button>
+            <h2 id="modal-title">Coffee Shop App - Mobile Ordering Experience</h2>
+            
+            <div class="modal-links">
+                <a href="https://www.behance.net/rashazreaq" class="modal-link" target="_blank" rel="noopener noreferrer">
+                    View Full Case Study on Behance
+                </a>
+                <a href="https://www.linkedin.com/in/rasha-zreaq" class="modal-link secondary" target="_blank" rel="noopener noreferrer">
+                    Connect on LinkedIn
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    closeModal(modal.id);
+                }
+            });
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        closeModal(modal.id);
+                    }
+                });
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.case-study-card, .about-content, .contact-content').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+<!-- إضافة قائمة التنقل المحمولة -->
+<div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-content">
+        <div class="mobile-menu-header">
+            <a href="#home" class="mobile-logo">
+                <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="85" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
+                    <path d="M60 70 Q60 60, 70 60 L120 60 Q135 60, 135 75 Q135 90, 120 90 L90 90 L135 130 M90 90 L90 130" 
+                          fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M70 140 Q90 145, 110 140 Q130 135, 120 142" 
+                          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                    <circle cx="150" cy="75" r="2" fill="currentColor" opacity="0.6"/>
+                    <circle cx="45" cy="120" r="2" fill="currentColor" opacity="0.6"/>
+                    <circle cx="155" cy="140" r="1.5" fill="currentColor" opacity="0.4"/>
+                </svg>
+                <span>Rasha Zreaq</span>
+            </a>
+            <button class="mobile-close" id="mobile-close">&times;</button>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="#home" onclick="closeMobileMenu()">Home</a></li>
+            <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+            <li><a href="#work" onclick="closeMobileMenu()">Work</a></li>
+            <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- مؤشر التقدم في القراءة -->
+<div id="reading-progress" class="reading-progress"></div>
+
+<!-- زر العودة للأعلى -->
+<button id="back-to-top" class="back-to-top" aria-label="Back to top">↑</button>
+
+<style>
+/* أنماط القائمة المحمولة */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    z-index: 2000;
+    transition: left 0.3s ease;
+}
+
+.mobile-menu.active {
+    left: 0;
+}
+
+.mobile-menu-content {
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #6366f1;
+    text-decoration: none;
+}
+
+.mobile-logo .logo-svg {
+    width: 35px;
+    height: 35px;
+    fill: #6366f1;
+}
+
+.mobile-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-close:hover {
+    background-color: #f3f4f6;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav-links li {
+    margin-bottom: 2rem;
+}
+
+.mobile-nav-links a {
+    display: block;
+    padding: 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #e5e7eb;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav-links a:hover {
+    color: #6366f1;
+}
+
+/* مؤشر التقدم */
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    z-index: 1001;
+    transition: width 0.3s ease;
+}
+
+/* زر العودة للأعلى */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+/* تحسينات الرسوم المتحركة */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.slide-in-left {
+    animation: slideInLeft 0.6s ease forwards;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.6s ease forwards;
+}
+
+/* تحسينات إضافية للاستجابة */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .modal-content {
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
+        padding: 1.5rem;
+    }
+    
+    .case-study-content {
+        padding: 1.5rem;
+    }
+    
+    .skills {
+        justify-content: center;
+    }
+}
+
+/* إضافة تأثيرات hover للبطاقات */
+.case-study-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.case-study-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+.case-study-card:hover::before {
+    left: 100%;
+}
+
+/* تحسين أداء التمرير */
+* {
+    scroll-behavior: smooth;
+}
+
+/* تحسينات إمكانية الوصول */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* تحسين focus states */
+a:focus,
+button:focus {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+/* تحسين الطباعة */
+@media print {
+    nav, .back-to-top, .mobile-menu {
+        display: none;
+    }
+    
+    .hero {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+    
+    section {
+        padding: 1rem 0;
+        page-break-inside: avoid;
+    }
+}
+</style>
+
+<script>
+// إضافة الوظائف الناقصة
+document.addEventListener('DOMContentLoaded', function() {
+    // تشغيل القائمة المحمولة
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileClose = document.getElementById('mobile-close');
+    
+    if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    
+    if (mobileClose && mobileMenu) {
+        mobileClose.addEventListener('click', function() {
+            closeMobileMenu();
+        });
+    }
+    
+    // إغلاق القائمة عند الضغط خارجها
+    mobileMenu?.addEventListener('click', function(e) {
+        if (e.target === mobileMenu) {
+            closeMobileMenu();
+        }
+    });
+    
+    // مؤشر التقدم
+    const progressBar = document.getElementById('reading-progress');
+    
+    function updateProgress() {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        
+        if (progressBar) {
+            progressBar.style.width = scrollPercent + '%';
+        }
+    }
+    
+    window.addEventListener('scroll', updateProgress);
+    
+    // زر العودة للأعلى
+    const backToTop = document.getElementById('back-to-top');
+    
+    function toggleBackToTop() {
+        if (window.pageYOffset > 300) {
+            backToTop?.classList.add('visible');
+        } else {
+            backToTop?.classList.remove('visible');
+        }
+    }
+    
+    window.addEventListener('scroll', toggleBackToTop);
+    
+    backToTop?.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // تحسين الرسوم المتحركة
+    const animateElements = document.querySelectorAll('.about-image, .about-text');
+    
+    const slideObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                if (index % 2 === 0) {
+                    entry.target.classList.add('slide-in-left');
+                } else {
+                    entry.target.classList.add('slide-in-right');
+                }
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    animateElements.forEach(el => slideObserver.observe(el));
+    
+    // تحسين أداء التمرير
+    let ticking = false;
+    
+    function handleScroll() {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                updateProgress();
+                toggleBackToTop();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // إضافة معالج لتغيير حجم النافذة
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            closeMobileMenu();
+        }
+    });
+    
+    // تحسين الوصولية - إدارة focus
+    document.addEventListener('keydown', function(e) {
+        // إغلاق القائمة المحمولة بمفتاح Escape
+        if (e.key === 'Escape' && mobileMenu?.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+});
+
+// وظيفة إغلاق القائمة المحمولة
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// تحسين تجربة اللمس للأجهزة المحمولة
+if ('ontouchstart' in window) {
+    document.addEventListener('touchstart', function() {}, { passive: true });
+}
+
+// إضافة preloader بسيط
+window.addEventListener('load', function() {
+    document.body.classList.add('loaded');
+    
+    // إخفاء أي loader موجود
+    const loader = document.querySelector('.loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 300);
+    }
+});
+
+// تحسين أداء الصور (lazy loading)
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    imageObserver.unobserve(img);
+                }
+            }
+        });
+    });
+    
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+</script>
